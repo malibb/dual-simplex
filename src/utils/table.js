@@ -1,5 +1,0 @@
-const getMethod = () => {};
-
-export default {
-    
-};
