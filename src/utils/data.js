@@ -22,8 +22,8 @@ const data = {
             { type: 'text', text:'Estos fueron los paso ejecutados'},
         ],
         answers: [
-            { type: 'title', text:'RESULTADOS PASO A PASO'},
-            { type: 'text', text:'Ya se llevó acabo el proceso de cálculo de dual simplex para maximización.'},
+            { type: 'title', text:'Equipo 2: Métodos cuantitativos - Profesor José Cruz Martinez Perales '},
+            { type: 'text', text:'Gracias por pasar a ver :)'},
         ],
     }
 };
