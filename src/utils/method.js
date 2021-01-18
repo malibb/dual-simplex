@@ -38,12 +38,13 @@ const getResults = ({vars,z,x,r}) => {
         if(Object.keys(vZ).some(e => vZ[e] < 0) ) {
             //console.log(getDualFact(vX),tablesR[noiteracion].vX);
             const cond = getDualFact(vX, noiteracion);
+            console.log(cond)
             while (getDualFact(vX, noiteracion)) { 
                 const renglonPivote = getRenglonPivote(vX);
                 //console.log('renglonPivote', renglonPivote);
                 const columnaPivote = getColumnaPivote(vZ, vX, vars.base_var, renglonPivote);
                 //console.log('columna', columnaPivote); 
-                const coefDiv = vX[columnaPivote][renglonPivote];            // leugo simplex v[renglon pivote] = v[renglon].map(e => e / coefdiv) / 
+                const coefDiv = vX[renglonPivote][columnaPivote];            // leugo simplex v[renglon pivote] = v[renglon].map(e => e / coefdiv) / 
                 //console.log('coefDiv', coefDiv); 
                 //console.log(vX[renglonPivote],' Vector pivote');
                 //console.log(vX[renglonPivote],'Nuevo Vector pivote', vX[renglonPivote].map(e => e / coefDiv));
@@ -52,10 +53,10 @@ const getResults = ({vars,z,x,r}) => {
                 //console.log(vX[renglonPivote],'Nuevo Vector pivote');
                 
                 // for 0 hasta vX
-                console.log('no Iteracion', noiteracion, 'vZ es: ',vZ);
+               
                 for(let i = 0; i < vars.restriction_var; i++) {
                 // si i !== renglonPivote ( 
-                    //console.log('condición', i != renglonPivote,i);
+                    console.log('condición', i != renglonPivote,i);
                     if(i != renglonPivote) {
                         // vX[i] =vX[i].map(j => Vx[i][j] - (VZ[i][columnaPivote]*vX[renglon pivote][j]))
                         //console.log('filaOriginal', vX[i]);
@@ -67,12 +68,18 @@ const getResults = ({vars,z,x,r}) => {
                             });
                     }
                 }  
-                console.log(vZ,vX);
+                //console.log(vZ,vX);
 
-                tablesR = [...tablesR,{vZ:vZ,vX:vX, r:renglonPivote, c:columnaPivote, coef: coefDiv, noiteracion: noiteracion}];
-                vZ = Object.keys(vZ).map(i => {
+                vZ = Object.keys(vZ).reduce((acc, act) => {
                     //console.log(vZ[i],vZ[columnaPivote],vX[renglonPivote][i]);
-                    return { [i]: vZ[i] - (vZ[columnaPivote] * vX[renglonPivote][i]) }});
+                        return {
+                            ...acc,
+                            [act]: vZ[act] - (vZ[columnaPivote] * vX[renglonPivote][act])
+                        };
+                    }, {}); 
+                console.log('no Iteracion', noiteracion, 'vZ es: ',vZ, 'vX', vX);
+                tablesR = [...tablesR,{vZ:vZ,vX:vX, r:renglonPivote, c:columnaPivote, coef: coefDiv, noiteracion: noiteracion}];
+                
                     //)
                 
                 noiteracion++;

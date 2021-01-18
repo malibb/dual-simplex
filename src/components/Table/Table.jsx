@@ -8,10 +8,10 @@ const Table = ({r,c, vX, vZ, last, noB, nB}) => {
 
     return (<>
         {d.last 
-        ? <p> La tabla final es la siguiente </p> 
+        ? <p> La tabla final es la siguiente:</p> 
         : <p> Se hace la operación del vector con reglón pivote {parseInt(d.r) +1} y la columna pivote {parseInt(d.c) +1}.</p>}
         <div className="flex justify-center">
-        <table class="table-fixed bg-green-50 m-4">
+        <table className="table-fixed bg-green-50 m-4">
             <thead>
                 <tr>
                     <td className="p-1.5"> Vb </td>

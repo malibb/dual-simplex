@@ -19,7 +19,8 @@ const Method = () => {
     };
     
     const getData = (data) => {
-        //console.log(data);
+        console.log(JSON.stringify(data));
+        //const d = {"z":{"0":3,"1":2},"vars":{"base_var":2,"restriction_var":3,"operation":0},"x":{"0":[3,1,3],"1":[4,3,6],"2":[1,1,3]},"r":{"0":">=","1":">=","2":"<="}};
         const [tables, varsy] = u.getResults(data);
         //debugger;
         
